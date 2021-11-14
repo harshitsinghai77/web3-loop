@@ -31,7 +31,7 @@ import {
   InputGroup,
   Container,
   Row,
-  Col
+  Col,
 } from "reactstrap";
 
 // core components
@@ -73,7 +73,7 @@ class Login extends React.Component {
                           className="btn-neutral btn-icon"
                           color="default"
                           href="#pablo"
-                          onClick={e => e.preventDefault()}
+                          onClick={(e) => e.preventDefault()}
                         >
                           <span className="btn-inner--icon mr-1">
                             <img
@@ -87,7 +87,7 @@ class Login extends React.Component {
                           className="btn-neutral btn-icon ml-1"
                           color="default"
                           href="#pablo"
-                          onClick={e => e.preventDefault()}
+                          onClick={(e) => e.preventDefault()}
                         >
                           <span className="btn-inner--icon mr-1">
                             <img
@@ -158,7 +158,7 @@ class Login extends React.Component {
                       <a
                         className="text-light"
                         href="#pablo"
-                        onClick={e => e.preventDefault()}
+                        onClick={(e) => e.preventDefault()}
                       >
                         <small>Forgot password?</small>
                       </a>
@@ -167,7 +167,7 @@ class Login extends React.Component {
                       <a
                         className="text-light"
                         href="#pablo"
-                        onClick={e => e.preventDefault()}
+                        onClick={(e) => e.preventDefault()}
                       >
                         <small>Create new account</small>
                       </a>
