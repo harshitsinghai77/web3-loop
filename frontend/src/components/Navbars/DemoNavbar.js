@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Headroom from "headroom.js";
 import ConnectWallet from "./ConnectWallet";
 import {
-  Button,
   UncontrolledCollapse,
   DropdownMenu,
   DropdownItem,
@@ -13,7 +12,6 @@ import {
   NavbarBrand,
   Navbar,
   NavItem,
-  NavLink,
   Nav,
   Container,
   Row,
@@ -157,6 +155,9 @@ class DemoNavbar extends React.Component {
                       <span className="nav-link-inner--text">Examples</span>
                     </DropdownToggle>
                     <DropdownMenu>
+                      <DropdownItem to="/" tag={Link}>
+                        HomePage
+                      </DropdownItem>
                       <DropdownItem to="/landing-page" tag={Link}>
                         Landing
                       </DropdownItem>
