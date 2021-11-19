@@ -321,7 +321,7 @@ class Landing extends React.Component {
 									</h2>
 									<p className="lead text-white">
 										Do you want your favourite creators to
-										keep talking about product placements?
+										keep talking about sponsored products?
 										If yes, move on to{" "}
 										<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
 											Youtube
@@ -374,56 +374,21 @@ class Landing extends React.Component {
 							<a href="https://demos.creative-tim.com/argon-design-system-react/#/documentation/icons?ref=adsr-landing-page">
 								<div className="icons-container blur-item mt-5 on-screen">
 									<i className="icon ni ni-diamond" />
-									<i className="icon icon-sm ni ni-album-2" />
-									<i className="icon icon-sm ni ni-app" />
-									<i className="icon icon-sm ni ni-atom" />
-									<i className="icon ni ni-bag-17" />
-									<i className="icon ni ni-bell-55" />
-									<i className="icon ni ni-credit-card" />
-									<i className="icon icon-sm ni ni-briefcase-24" />
-									<i className="icon icon-sm ni ni-building" />
-									<i className="icon icon-sm ni ni-button-play" />
-									<i className="icon ni ni-calendar-grid-58" />
-									<i className="icon ni ni-camera-compact" />
-									<i className="icon ni ni-chart-bar-32" />
-									{/* <i className="icon">
-                    <img
-                      src="https://staticg.sportskeeda.com/editor/2020/08/1a2c1-15977865196143-800.jpg"
-                      className="icon"
-                      alt="goku"
-                    />
-                  </i>
-                  <i className="icon">
-                    <img
-                      src="https://staticg.sportskeeda.com/editor/2020/08/1a2c1-15977865196143-800.jpg"
-                      className="icon"
-                      alt="goku"
-                    />
-                  </i>
-                  <i className="">
-                    <img
-                      src="https://staticg.sportskeeda.com/editor/2020/08/1a2c1-15977865196143-800.jpg"
-                      className="icon img-src-icon"
-                      alt="goku"
-                    />
-                  </i>
-                  <i className="">
-                    <img
-                      src="https://static0.gamerantimages.com/wordpress/wp-content/uploads/2021/09/Pokemon-GO-Players-Are-Encountering-Shadow-and-Rainbow-Pikachu.jpg"
-                      className="icon img-src-icon"
-                      alt="goku"
-                    />
-                  </i>
-                  <i className="icon">
-                    <img
-                      src="https://staticg.sportskeeda.com/editor/2020/08/1a2c1-15977865196143-800.jpg"
-                      className="icon"
-                      alt="goku"
-                    />
-                  </i> */}
+									<i className="icon icon-sm ni ni-single-02" />
+									<i className="icon icon-sm ni ni-single-02" />
+									<i className="icon icon-sm ni ni-single-02" />
+									<i className="icon ni ni-single-02" />
+									<i className="icon ni ni-single-02" />
+									<i className="icon ni ni-single-02" />
+									<i className="icon icon-sm ni ni-single-02" />
+									<i className="icon icon-sm ni ni-single-02" />
+									<i className="icon icon-sm ni ni-single-02" />
+									<i className="icon ni ni-single-02" />
+									<i className="icon ni ni-single-02" />
+									<i className="icon ni ni-single-02" />
 								</div>
 								<span className="blur-hidden h5 text-success">
-									Eplore all the 21.000+ Nucleo Icons
+									Explore all the 21,000+ creators
 								</span>
 							</a>
 						</div>
