@@ -37,6 +37,9 @@ ReactDOM.render(
         <Route path="/register-page">
           <Register />
         </Route>
+        <Route path="/creators">
+          <Landing />
+        </Route>
         <Redirect to="/" />
       </Switch>
     </BrowserRouter>
