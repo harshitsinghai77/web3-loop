@@ -1,6 +1,6 @@
 .landing-page {
-  background-color: #0e1624;
-  /* background-image: url("https://dragonball.guru/wp-content/uploads/2021/01/goku-dragon-ball-guru.jpg");
+	background-color: #0e1624;
+	/* background-image: url("https://dragonball.guru/wp-content/uploads/2021/01/goku-dragon-ball-guru.jpg");
   background-repeat: no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -9,7 +9,7 @@
 }
 
 .padding-top {
-  padding-top: 8rem;
+	padding-top: 8rem;
 }
 
 /* .web3modal-modal-lightbox {
@@ -17,30 +17,30 @@
 } */
 
 .register-overlay {
-  /* position: absolute;
-  top: 10;
-  left: 0;
-  right: 0;
-  bottom: 0; */
-  margin-bottom: 5rem;
+	position: absolute;
+	top: 5px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin-bottom: 5rem;
 }
 
 .background-animation {
-  margin: auto;
+	margin: auto;
 }
 
 .img-src-icon {
-  width: 5rem;
-  height: 5rem;
-  border-radius: 50%;
-  object-fit: contain;
+	width: 5rem;
+	height: 5rem;
+	border-radius: 50%;
+	object-fit: contain;
 }
 
 .my-rounded-cirlce {
-  border-radius: 50% !important;
-  height: 120px;
-  width: 160px;
-  /* overflow: hidden;
+	border-radius: 50% !important;
+	height: 120px;
+	width: 160px;
+	/* overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center; */
