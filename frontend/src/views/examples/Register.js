@@ -141,7 +141,6 @@ const Register = () => {
 						<span />
 						<span />
 					</div>
-					<HeroComponent size="8" />
 
 					<Container className="pt-lg-7 register-overlay">
 						<Row className="justify-content-center">
