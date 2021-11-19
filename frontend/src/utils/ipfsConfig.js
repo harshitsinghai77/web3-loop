@@ -70,3 +70,12 @@ export const uploadMetadataToIPFS = async (
 export const retrieveDataFromIPFS = (ipfsHash) => {
   return axios.get(`https://ipfs.infura.io:5001/api/v0/cat?arg=${ipfsHash}`);
 };
+
+export const retrieveImageFromIPFS = (ipfsHash) => {
+  const config = {
+    url: `https://ipfs.infura.io:5001/api/v0/cat?arg=${ipfsHash}`,
+    method: 'GET',
+    responseType: 'blob'
+  }
+  return axios(config);
+};
