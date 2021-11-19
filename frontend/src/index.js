@@ -9,6 +9,7 @@ import "./assets/css/landing-page.css";
 
 import Index from "views/Index.js";
 import Landing from "views/examples/Landing.js";
+import Creators from "views/examples/Creators.js";
 import Login from "views/examples/Login.js";
 import Profile from "views/examples/Profile.js";
 import Register from "views/examples/Register.js";
@@ -38,7 +39,7 @@ ReactDOM.render(
           <Register />
         </Route>
         <Route path="/creators">
-          <Landing />
+          <Creators />
         </Route>
         <Redirect to="/" />
       </Switch>
