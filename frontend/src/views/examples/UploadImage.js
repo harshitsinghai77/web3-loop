@@ -2,8 +2,9 @@ import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Button } from "reactstrap";
 
-export const UploadImage = ({ onImageUploaded }) => {
+const UploadImage = ({ onImageUploaded }) => {
   const [image, setImage] = useState();
+  // const [imageName, setImageName] = useState();
 
   const convertToBuffer = async (reader) => {
     //file is converted to a buffer for upload to IPFS
@@ -15,10 +16,13 @@ export const UploadImage = ({ onImageUploaded }) => {
   const onDrop = useCallback(
     (acceptedFiles) => {
       const uploadedImage = acceptedFiles[0];
-      let previewImage = uploadedImage;
-      previewImage["preview"] = URL.createObjectURL(previewImage);
-      setImage(previewImage);
+      // setImageName(uploadedImage[''])
       if (!uploadedImage) return;
+
+      uploadedImage["preview"] = URL.createObjectURL(uploadedImage);
+      setImage(uploadedImage);
+      // setImageName(uploadedImage["name"]);
+
       let reader = new window.FileReader();
       reader.readAsArrayBuffer(uploadedImage);
       reader.onloadend = async () => {
@@ -36,7 +40,7 @@ export const UploadImage = ({ onImageUploaded }) => {
   });
 
   const thumbs = image && (
-    <img className="my-rounded-cirlce" src={image.preview} alt={image.name} />
+    <img className="square-cirle" src={image.preview} alt={image.name} />
   );
 
   return (
@@ -51,7 +55,9 @@ export const UploadImage = ({ onImageUploaded }) => {
           Drag and drop profile pic
         </Button>
       )}
-      {/* {thumbs} */}
+      {thumbs}
     </div>
   );
 };
+
+export default UploadImage;

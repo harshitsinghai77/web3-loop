@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Button, Card, Container, Row, Col } from "reactstrap";
+import { Button, Card, Container, Row, Col, NavLink } from "reactstrap";
 import { BigNumber } from "@ethersproject/bignumber";
 import Loader from "react-loader-spinner";
 
@@ -37,12 +37,11 @@ const Profile = (props) => {
   const creatorAddress = props.match.params.address;
 
   useEffect(() => {
-    document.documentElement.scrollTop = 0;
-    document.scrollingElement.scrollTop = 0;
+    // document.documentElement.scrollTop = 0;
+    // document.scrollingElement.scrollTop = 0;
 
     const getCreatorId = async () => {
       let id = await burnerContract.getCreatorIdFromAddress(creatorAddress);
-
       id = parseInt(id.toString());
       const creatorHash = await burnerContract.getCreatorFromId(id);
 
@@ -117,95 +116,6 @@ const Profile = (props) => {
 
   const truncateString = (str, num) =>
     str.slice(0, num / 2) + "..." + str.slice(str.length - num / 2, str.length);
-
-  const userCard = (userData) => (
-    <div className="px-4">
-      <Row className="justify-content-center">
-        <Col className="order-lg-2" lg="3">
-          <div className="card-profile-image">
-            <img
-              alt="..."
-              className="my-rounded-cirlce"
-              src={
-                creatorImage
-                  ? creatorImage
-                  : "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
-              }
-            />
-          </div>
-        </Col>
-        <Col className="order-lg-3 text-lg-right align-self-lg-center" lg="4">
-          <div className="card-profile-actions py-4 mt-lg-0">
-            <Button
-              className="mr-4"
-              color="info"
-              onClick={depositCreator}
-              size="sm"
-            >
-              Go Live
-            </Button>
-
-            <Button
-              className="float-right"
-              color="default"
-              onClick={depositCreator}
-              size="sm"
-            >
-              Deposit Pool
-            </Button>
-
-            <Button
-              className="float-right"
-              color="default"
-              onClick={approveDeposit}
-              size="sm"
-            >
-              Approve
-            </Button>
-          </div>
-        </Col>
-
-        <Col className="order-lg-1" lg="4">
-          <div className="card-profile-stats d-flex justify-content-center">
-            <div>
-              <span className="heading">22</span>
-              <span className="description">Stakers</span>
-            </div>
-            <div>
-              <span className="heading">{staked}</span>
-              <span className="description">Staked</span>
-            </div>
-            <div>
-              <span className="heading">89</span>
-              <span className="description">Earned</span>
-            </div>
-          </div>
-        </Col>
-      </Row>
-      <div className="text-center mt-5">
-        <h3>{userData.username}</h3>
-        <div className="h6 font-weight-300">
-          <i className="ni location_pin mr-2" />
-          {truncateString(userData.creatorAddress, 10)}
-        </div>
-        <div className="h6 mt-4">
-          <i className="ni business_briefcase-24 mr-2" />
-          {userData.fullName}
-        </div>
-        <div>
-          <i className="ni education_hat mr-2" />
-          B.tech Computer Science Bennett University
-        </div>
-      </div>
-      <div className="mt-5 py-5 border-top text-center">
-        <Row className="justify-content-center">
-          <Col lg="9">
-            <p>{userData.description}</p>
-          </Col>
-        </Row>
-      </div>
-    </div>
-  );
 
   return creatorExists ? (
     <div>{creatorExists}</div>
@@ -314,7 +224,6 @@ const Profile = (props) => {
                     <div className="text-center mt-5">
                       <h3>{userData.username}</h3>
                       <div className="h6 font-weight-300">
-                        <i className="ni location_pin mr-2" />
                         {truncateString(userData.creatorAddress, 10)}
                       </div>
 
@@ -323,8 +232,11 @@ const Profile = (props) => {
                         {userData.fullName}
                       </div>
                       <div>
-                        <i className="ni education_hat mr-2" />
-                        B.tech Computer Science Bennett University
+                        <i className="fa fa-facebook-square mr-2" />
+                        <i className="fa fa-twitter-square mr-2" />
+
+                        <i className="fa fa-instagram mr-2" />
+                        <i className="fa fa-youtube-square mr-2" />
                       </div>
                     </div>
                     <div className="mt-5 py-5 border-top text-center">
