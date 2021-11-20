@@ -22,7 +22,7 @@
     },
     {
         "inputs": [],
-        "name": "currentBalance",
+        "name": "currentContractBalance",
         "outputs": [
             {
                 "internalType": "uint256",
@@ -47,13 +47,6 @@
         "type": "function"
     },
     {
-        "inputs": [],
-        "name": "destruct",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
         "inputs": [
             {
                 "internalType": "address",
@@ -62,6 +55,45 @@
             }
         ],
         "name": "fanAmount",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "totalDepositValue",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "totalFanCount",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "totalRawDepositCount",
         "outputs": [
             {
                 "internalType": "uint256",

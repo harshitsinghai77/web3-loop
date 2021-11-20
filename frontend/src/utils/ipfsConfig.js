@@ -55,13 +55,11 @@ export const uploadMetadataToIPFS = async (
   bufferImage
 ) => {
   const ipfsImageHash = await addImageToIPFS(bufferImage);
-
-  const socialMedia = addSocialLinks(socialLinks);
   return await addCreator(
     jsonData.username,
     jsonData.fullName,
     jsonData.description,
-    socialMedia,
+    socialLinks,
     ipfsImageHash,
     jsonData.creatorAddress
   );

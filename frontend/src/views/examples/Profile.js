@@ -1,29 +1,22 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Button, Card, Container, Row, Col, NavLink } from "reactstrap";
+import { Button, Card, Container, Row, Col } from "reactstrap";
 import { BigNumber } from "@ethersproject/bignumber";
-import Loader from "react-loader-spinner";
 
 import DemoNavbar from "components/Navbars/DemoNavbar.js";
 import CardsFooter from "components/Footers/CardsFooter.js";
 import HeroComponent from "../../components/Hero/hero";
+import SpinnerComponent from "../../components/Spinner";
 import { burnerContract, CreatorContract } from "../../smartContract";
 import {
   retrieveDataFromIPFS,
   retrieveImageFromIPFS,
 } from "../../utils/ipfsConfig";
-import { getWalletProvider } from "../../utils/connectWallet";
+import { getLocalProvider } from "../../utils/connectWallet";
 import { store } from "../../store/store";
-import { SET_WEB3_PROVIDER } from "../../store/types";
 
-const SpinnerComponent = (
-  <div className="text-center mb-5 mt-5">
-    <Loader type="MutatingDots" color="#00BFFF" height={80} width={80} />
-  </div>
-);
 
 const Profile = (props) => {
   const globalState = useContext(store);
-  const { dispatch } = globalState;
   const { web3Provider } = globalState.state;
 
   const [userData, setUserData] = useState();
@@ -44,18 +37,17 @@ const Profile = (props) => {
       let id = await burnerContract.getCreatorIdFromAddress(creatorAddress);
       id = parseInt(id.toString());
       const creatorHash = await burnerContract.getCreatorFromId(id);
-
-      // const burnerSigner = await burnerContract.contract.getSigner()
-      // console.log(burnerContract.contract)
-      // const creatorContract = new CreatorContract(burnerContract.contract, creatorAddress)
-      // const creatorBalance = await creatorContract.creatorBalance(creatorAddress)
-      const creatorBalance = 0;
-
+      
       if (creatorHash[0] === "Paradise Biryani") {
         setCreatorExists("Creator is not registered!");
         return;
       }
       const creatorContractAddress = await burnerContract.getContractFromId(id);
+      
+      const localProvider = await getLocalProvider().getSigner()
+      const creatorContract = new CreatorContract(localProvider, creatorContractAddress[0])
+      const creatorBalance = await creatorContract.creatorBalance()
+
       let userData = await retrieveDataFromIPFS(creatorHash);
       userData = userData.data;
       const userImageHash = userData["userImage"];
@@ -66,7 +58,7 @@ const Profile = (props) => {
       setCreatorId(id);
       SetCreatorIpfsHash(creatorHash);
       setCreatorContractAddress(creatorContractAddress);
-      setStaked(creatorBalance);
+      setStaked(creatorBalance.toString());
     };
 
     getCreatorId();
@@ -80,23 +72,12 @@ const Profile = (props) => {
     };
   };
 
-  const checkWeb3Modal = () => {
-    if (!web3Provider) {
-      getWalletProvider().then((provider) => {
-        if (provider) {
-          dispatch({
-            type: SET_WEB3_PROVIDER,
-            value: provider,
-          });
-        }
-      });
-    }
-  };
-
   const depositCreator = async (e) => {
     e.preventDefault();
-    checkWeb3Modal();
-
+    if (!web3Provider) {
+      console.log("web3Provider is not defined");
+      return
+    }
     const contract = new CreatorContract(
       web3Provider.getSigner(),
       creatorContractAddress[0]
@@ -104,9 +85,26 @@ const Profile = (props) => {
     await contract.depositFunds(BigNumber.from("42"));
   };
 
+  const withdrawPool = async (e) => {
+    e.preventDefault();
+    if (!web3Provider) {
+      console.log("web3Provider is not defined");
+      return
+    }
+
+    const contract = new CreatorContract(
+      web3Provider.getSigner(),
+      creatorContractAddress[0]
+    );
+    await contract.withdrawFundsFan();
+  }
+
   const approveDeposit = async (e) => {
     e.preventDefault();
-    checkWeb3Modal();
+    if(!web3Provider) {
+      console.log("Web3Model not found")
+      return
+    }
     const contract = new CreatorContract(
       web3Provider.getSigner(),
       creatorContractAddress[0]
@@ -183,6 +181,15 @@ const Profile = (props) => {
                             size="sm"
                           >
                             Go Live
+                          </Button>
+
+                          <Button
+                            className="mr-4"
+                            color="info"
+                            onClick={withdrawPool}
+                            size="sm"
+                          >
+                            Withdraw Pool
                           </Button>
 
                           <Button

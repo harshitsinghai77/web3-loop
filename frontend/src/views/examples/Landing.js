@@ -7,18 +7,18 @@ import CardsFooter from "components/Footers/CardsFooter.js";
 import Download from "../IndexSections/Download.js";
 import HeroComponent from "../../components/Hero/hero";
 
-class Landing extends React.Component {
-  state = {};
-  // componentDidMount() {
-  //   document.documentElement.scrollTop = 0;
-  //   document.scrollingElement.scrollTop = 0;
-  //   this.refs.main.scrollTop = 0;
-  // }
-  render() {
+const creatorsList = [
+  {name: 'Ryan Tompson', username: 'ryan_tompson', imgURL: 'https://images.unsplash.com/photo-1613294326794-e7c74fe886e2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'},
+  {name: 'Romina Hadid', username: 'romina_hadid', imgURL: 'https://www.brandingmag.com/wp-content/uploads/2020/08/Jennifer_Quigley-Jones_001_COVER.jpg'},
+  {name: 'Alexander Smith', username: 'alex_17', imgURL: 'https://www.timeshighereducation.com/sites/default/files/styles/the_breaking_news_image_style/public/istock-1069995244.jpg?itok=RVd1xsST'},
+  {name: 'John Doe', username: 'john_doe', imgURL: 'https://images.financialexpress.com/2020/08/Sumedh.jpeg?w=1200&h=800&imflag=true'}
+]
+
+const Landing = () => {
     return (
       <>
         <DemoNavbar />
-        <main ref="main">
+        <main>
           <div className="position-relative">
             {/* shape Hero */}
             <section className="section section-lg landing-page pb-250">
@@ -55,225 +55,51 @@ class Landing extends React.Component {
           <section className="section section-lg">
             <Container>
               <Row>
-                <Col className="mb-5 mb-lg-0" lg="3" md="6">
-                  <div className="px-4">
-                    <img
-                      alt="..."
-                      className="img-center img-fluid shadow shadow-lg--hover"
-                      src="https://images.unsplash.com/photo-1613294326794-e7c74fe886e2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-                      style={{
-                        width: "200px",
-                        height: "100px",
-                      }}
-                    />
-                    <div className="pt-4 text-center">
-                      <h5 className="title">
-                        <span className="d-block mb-1">Ryan Tompson</span>
-                        <small className="h6 text-muted">Tech Youtuber</small>
-                      </h5>
-                      <div className="mt-3">
-                        <Button
-                          className="btn-icon-only rounded-circle"
-                          color="warning"
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          <i className="fa fa-twitter" />
-                        </Button>
-                        <Button
-                          className="btn-icon-only rounded-circle ml-1"
-                          color="warning"
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          <i className="fa fa-facebook" />
-                        </Button>
-                        <Button
-                          className="btn-icon-only rounded-circle ml-1"
-                          color="warning"
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          <i className="fa fa-dribbble" />
-                        </Button>
+                {creatorsList.map(el => (
+                  <Col className="mb-5 mb-lg-0" lg="3" md="6">
+                      <div className="px-4">
+                        <img
+                          alt={el.name}
+                          className="img-center img-fluid shadow shadow-lg--hover"
+                          src={el.imgURL}
+                          style={{
+                            width: "200px",
+                            height: "100px",
+                          }}
+                        />
+                        <div className="pt-4 text-center">
+                          <h5 className="title">
+                            <span className="d-block mb-1">{el.name}</span>
+                            <small className="h6 text-muted">{el.username}</small>
+                          </h5>
+                          <div className="mt-3">
+                            <Button
+                              className="btn-icon-only rounded-circle"
+                              color="warning"
+                            >
+                              <i className="fa fa-twitter" />
+                            </Button>
+                            <Button
+                              className="btn-icon-only rounded-circle ml-1"
+                              color="warning"
+                            >
+                              <i className="fa fa-facebook" />
+                            </Button>
+                            <Button
+                              className="btn-icon-only rounded-circle ml-1"
+                              color="warning"
+                            >
+                              <i className="fa fa-dribbble" />
+                            </Button>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                </Col>
-                <Col className="mb-5 mb-lg-0" lg="3" md="6">
-                  <div className="px-4">
-                    <img
-                      alt="..."
-                      className="img-center img-fluid shadow shadow-lg--hover"
-                      src="https://www.brandingmag.com/wp-content/uploads/2020/08/Jennifer_Quigley-Jones_001_COVER.jpg"
-                      style={{
-                        width: "200px",
-                        height: "100px",
-                      }}
-                    />
-                    <div className="pt-4 text-center">
-                      <h5 className="title">
-                        <span className="d-block mb-1">Romina Hadid</span>
-                        <small className="h6 text-muted">Tiktoker</small>
-                      </h5>
-                      <div className="mt-3">
-                        <Button
-                          className="btn-icon-only rounded-circle"
-                          color="primary"
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          <i className="fa fa-twitter" />
-                        </Button>
-                        <Button
-                          className="btn-icon-only rounded-circle ml-1"
-                          color="primary"
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          <i className="fa fa-facebook" />
-                        </Button>
-                        <Button
-                          className="btn-icon-only rounded-circle ml-1"
-                          color="primary"
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          <i className="fa fa-dribbble" />
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </Col>
-                <Col className="mb-5 mb-lg-0" lg="3" md="6">
-                  <div className="px-4">
-                    <img
-                      alt="..."
-                      className="img-center img-fluid shadow shadow-lg--hover"
-                      src="https://www.timeshighereducation.com/sites/default/files/styles/the_breaking_news_image_style/public/istock-1069995244.jpg?itok=RVd1xsST"
-                      style={{
-                        width: "200px",
-                        height: "100px",
-                      }}
-                    />
-                    <div className="pt-4 text-center">
-                      <h5 className="title">
-                        <span className="d-block mb-1">Alexander Smith</span>
-                        <small className="h6 text-muted">
-                          Motivational Speaker
-                        </small>
-                      </h5>
-                      <div className="mt-3">
-                        <Button
-                          className="btn-icon-only rounded-circle"
-                          color="info"
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          <i className="fa fa-twitter" />
-                        </Button>
-                        <Button
-                          className="btn-icon-only rounded-circle ml-1"
-                          color="info"
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          <i className="fa fa-facebook" />
-                        </Button>
-                        <Button
-                          className="btn-icon-only rounded-circle ml-1"
-                          color="info"
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          <i className="fa fa-dribbble" />
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </Col>
-                <Col className="mb-5 mb-lg-0" lg="3" md="6">
-                  <div className="px-4">
-                    <img
-                      alt="..."
-                      className="img-center img-fluid shadow shadow-lg--hover"
-                      src="https://images.financialexpress.com/2020/08/Sumedh.jpeg?w=1200&h=800&imflag=true"
-                      style={{
-                        width: "200px",
-                        height: "100px",
-                      }}
-                    />
-                    <div className="pt-4 text-center">
-                      <h5 className="title">
-                        <span className="d-block mb-1">John Doe</span>
-                        <small className="h6 text-muted">Gamer</small>
-                      </h5>
-                      <div className="mt-3">
-                        <Button
-                          className="btn-icon-only rounded-circle"
-                          color="success"
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          <i className="fa fa-twitter" />
-                        </Button>
-                        <Button
-                          className="btn-icon-only rounded-circle ml-1"
-                          color="success"
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          <i className="fa fa-facebook" />
-                        </Button>
-                        <Button
-                          className="btn-icon-only rounded-circle ml-1"
-                          color="success"
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          <i className="fa fa-dribbble" />
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </Col>
+                    </Col>
+                  ))}
               </Row>
             </Container>
           </section>
-          {/* <section className="section section-lg pt-0">
-						<Container>
-							<Card className="bg-gradient-warning shadow-lg border-0">
-								<div className="p-5">
-									<Row className="align-items-center">
-										<Col lg="8">
-											<h3 className="text-white">
-												We made website building easier
-												for you.
-											</h3>
-											<p className="lead text-white mt-3">
-												I will be the leader of a
-												company that ends up being worth
-												billions of dollars, because I
-												got the answers. I understand
-												culture.
-											</p>
-										</Col>
-										<Col className="ml-lg-auto" lg="3">
-											<Button
-												block
-												className="btn-white"
-												color="default"
-												href="https://www.creative-tim.com/product/argon-design-system-react?ref=adsr-landing-page"
-												size="lg"
-											>
-												Download React
-											</Button>
-										</Col>
-									</Row>
-								</div>
-							</Card>
-						</Container>
-					</section> */}
+          
           <section className="section section-lg bg-gradient-default">
             <Container className="pt-lg pb-300">
               <Row className="text-center justify-content-center">
@@ -351,6 +177,6 @@ class Landing extends React.Component {
       </>
     );
   }
-}
+
 
 export default Landing;

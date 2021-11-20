@@ -32,6 +32,9 @@ const web3Modal = new Web3Modal({
 
 export const logoutWeb3Modal = async () => {
   await web3Modal.clearCachedProvider();
+  setTimeout(() => {
+    window.location.reload()
+  }, 1)
 };
 
 export const getWalletProvider = async () => {

@@ -37,25 +37,11 @@ const Register = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [userImage, setUserImage] = useState();
 
-  const [socialMediaLinks, setSocialMediaLinks] = useState([]);
-
   const history = useHistory();
 
   useEffect(() => {
     document.scrollingElement.scrollTop = 0;
     document.documentElement.scrollTop = 0;
-
-    setSocialMediaLinks((oldState) => [
-      ...oldState,
-      <InputGroup className="input-group-alternative mb-3">
-        <InputGroupAddon addonType="prepend">
-          <InputGroupText>
-            <i className="ni ni-single-02" />
-          </InputGroupText>
-        </InputGroupAddon>
-        <Input placeholder="Username" type="text" />
-      </InputGroup>,
-    ]);
   }, []);
 
   useEffect(() => {
@@ -101,7 +87,10 @@ const Register = () => {
 
     const hash = await uploadMetadataToIPFS(jsonData, socialLinks, userImage);
 
-    const contract = new Contract(web3Provider.getSigner());
+    console.log(web3Provider)
+
+    const signer = web3Provider.getSigner();
+    const contract = new Contract(signer);
     contract.addCreator(hash).then((resp) => {
       history.push("/" + address);
     });
