@@ -36,7 +36,7 @@ const ConnectWallet = () => {
           className="btn-neutral btn-icon"
           color="default"
         >
-          <span className="nav-link-inner--text ml-1">Disconnect Bitch</span>
+          <span className="nav-link-inner--text ml-1">Disconnect</span>
         </Button>
       ) : (
         <Button
@@ -44,7 +44,7 @@ const ConnectWallet = () => {
           className="btn-neutral btn-icon"
           color="default"
         >
-          <span className="nav-link-inner--text ml-1">Connect Bitch</span>
+          <span className="nav-link-inner--text ml-1">Connects</span>
         </Button>
       )}
     </>

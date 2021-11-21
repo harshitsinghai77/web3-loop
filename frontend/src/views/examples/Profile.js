@@ -103,7 +103,7 @@ const Profile = (props) => {
       web3Provider.getSigner(),
       creatorContractAddress[0]
     );
-    await contract.depositFunds(BigNumber.from("42"));
+    await contract.depositFunds(BigNumber.from((10 ** 18) * 0.5));
   };
 
   const createLiveStream = async () => {
