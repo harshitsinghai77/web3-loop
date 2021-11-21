@@ -16,18 +16,6 @@ const addImageToIPFS = async (imageBuffer) => {
   return ipfsHash[0].hash;
 };
 
-const addSocialLinks = (
-  twitterHandle = "",
-  instagramHandle = "",
-  youtubeChannel = ""
-) => {
-  return {
-    twitterHandle,
-    instagramHandle,
-    youtubeChannel,
-  };
-};
-
 export const addCreator = async (
   username,
   fullName,
@@ -72,8 +60,8 @@ export const retrieveDataFromIPFS = (ipfsHash) => {
 export const retrieveImageFromIPFS = (ipfsHash) => {
   const config = {
     url: `https://ipfs.infura.io:5001/api/v0/cat?arg=${ipfsHash}`,
-    method: 'GET',
-    responseType: 'blob'
-  }
+    method: "GET",
+    responseType: "blob",
+  };
   return axios(config);
 };

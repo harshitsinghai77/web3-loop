@@ -14,6 +14,8 @@ import {
 import { getLocalProvider } from "../../utils/connectWallet";
 import { store } from "../../store/store";
 
+const defaultImage =
+  "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y";
 
 const Profile = (props) => {
   const globalState = useContext(store);
@@ -23,37 +25,40 @@ const Profile = (props) => {
   const [creatorId, setCreatorId] = useState();
   const [creatorContractAddress, setCreatorContractAddress] = useState();
   const [creatorIpfsHash, SetCreatorIpfsHash] = useState();
-  const [creatorImage, setCreatorImage] = useState();
 
   const [creatorExists, setCreatorExists] = useState();
   const [staked, setStaked] = useState();
   const creatorAddress = props.match.params.address;
 
   useEffect(() => {
-    // document.documentElement.scrollTop = 0;
-    // document.scrollingElement.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+    document.scrollingElement.scrollTop = 0;
 
     const getCreatorId = async () => {
       let id = await burnerContract.getCreatorIdFromAddress(creatorAddress);
       id = parseInt(id.toString());
       const creatorHash = await burnerContract.getCreatorFromId(id);
-      
+
       if (creatorHash[0] === "Paradise Biryani") {
         setCreatorExists("Creator is not registered!");
         return;
       }
       const creatorContractAddress = await burnerContract.getContractFromId(id);
-      
-      const localProvider = await getLocalProvider().getSigner()
-      const creatorContract = new CreatorContract(localProvider, creatorContractAddress[0])
-      const creatorBalance = await creatorContract.creatorBalance()
+
+      const localProvider = await getLocalProvider().getSigner();
+      const creatorContract = new CreatorContract(
+        localProvider,
+        creatorContractAddress[0]
+      );
+      const creatorBalance = await creatorContract.creatorBalance();
 
       let userData = await retrieveDataFromIPFS(creatorHash);
       userData = userData.data;
       const userImageHash = userData["userImage"];
       const userImageFromIpfs = await retrieveImageFromIPFS(userImageHash);
+      const imgSrc = URL.createObjectURL(userImageFromIpfs.data);
+      userData["imgSrc"] = imgSrc;
 
-      getImage(userImageFromIpfs.data);
       setUserData(userData);
       setCreatorId(id);
       SetCreatorIpfsHash(creatorHash);
@@ -62,21 +67,13 @@ const Profile = (props) => {
     };
 
     getCreatorId();
-  }, []);
-
-  const getImage = (rawImage) => {
-    let reader = new FileReader();
-    reader.readAsDataURL(rawImage);
-    reader.onload = () => {
-      setCreatorImage(reader.result);
-    };
-  };
+  }, [creatorAddress]);
 
   const depositCreator = async (e) => {
     e.preventDefault();
     if (!web3Provider) {
       console.log("web3Provider is not defined");
-      return
+      return;
     }
     const contract = new CreatorContract(
       web3Provider.getSigner(),
@@ -89,7 +86,7 @@ const Profile = (props) => {
     e.preventDefault();
     if (!web3Provider) {
       console.log("web3Provider is not defined");
-      return
+      return;
     }
 
     const contract = new CreatorContract(
@@ -97,13 +94,13 @@ const Profile = (props) => {
       creatorContractAddress[0]
     );
     await contract.withdrawFundsFan();
-  }
+  };
 
   const approveDeposit = async (e) => {
     e.preventDefault();
-    if(!web3Provider) {
-      console.log("Web3Model not found")
-      return
+    if (!web3Provider) {
+      console.log("Web3Model not found");
+      return;
     }
     const contract = new CreatorContract(
       web3Provider.getSigner(),
@@ -149,7 +146,6 @@ const Profile = (props) => {
           <HeroComponent size="4" />
         </section>
         <section className="section">
-          {/* {!userData && SpinnerComponent} */}
           <Container>
             <Card className="card-profile shadow mt--300">
               <div className="px-4">
@@ -162,9 +158,9 @@ const Profile = (props) => {
                             alt="..."
                             className="my-rounded-cirlce"
                             src={
-                              creatorImage
-                                ? creatorImage
-                                : "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+                              userData["imgSrc"]
+                                ? userData["imgSrc"]
+                                : defaultImage
                             }
                           />
                         </div>
@@ -239,11 +235,27 @@ const Profile = (props) => {
                         {userData.fullName}
                       </div>
                       <div>
-                        <i className="fa fa-facebook-square mr-2" />
-                        <i className="fa fa-twitter-square mr-2" />
-
-                        <i className="fa fa-instagram mr-2" />
-                        <i className="fa fa-youtube-square mr-2" />
+                        <Button
+                          className="btn-icon-only rounded-circle mr-2"
+                          href={userData.socialMedia.twitterHandle}
+                          target="_blank"
+                        >
+                          <i className="fa fa-twitter" />
+                        </Button>
+                        <Button
+                          className="btn-icon-only rounded-circle mr-2"
+                          href={userData.socialMedia.instagramHandle}
+                          target="_blank"
+                        >
+                          <i className="fa fa-instagram" />
+                        </Button>
+                        <Button
+                          className="btn-icon-only rounded-circle mr-2"
+                          href={userData.socialMedia.youtubeChannel}
+                          target="_blank"
+                        >
+                          <i className="fa fa-youtube" />
+                        </Button>
                       </div>
                     </div>
                     <div className="mt-5 py-5 border-top text-center">
@@ -255,7 +267,7 @@ const Profile = (props) => {
                     </div>
                   </>
                 ) : (
-                  SpinnerComponent
+                  <SpinnerComponent />
                 )}
               </div>
             </Card>

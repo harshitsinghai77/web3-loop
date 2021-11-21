@@ -12,8 +12,8 @@ export class Contract {
     this.contract = new ethers.Contract(contractAddress, ABI, signerOrProvider);
   }
 
-  addCreator(hash) {
-    return this.contract.addCreator(hash);
+  async addCreator(hash) {
+    return await this.contract.addCreator(hash);
   }
 
   editCreator(hash) {
@@ -21,17 +21,24 @@ export class Contract {
   }
 }
 
-
 export class CreatorContract {
   constructor(signerOrProvider, creatorContractAddress) {
-    this.erc20 = new ethers.Contract('0xd0A1E359811322d97991E03f863a0C30C2cF029C', ERC20_ABI, signerOrProvider);
-    this.contract = new ethers.Contract(creatorContractAddress, CREATOR_ABI, signerOrProvider);
-    this.signerOrProvider= signerOrProvider;
-    this.creatorContractAddress = creatorContractAddress
+    this.erc20 = new ethers.Contract(
+      "0xd0A1E359811322d97991E03f863a0C30C2cF029C",
+      ERC20_ABI,
+      signerOrProvider
+    );
+    this.contract = new ethers.Contract(
+      creatorContractAddress,
+      CREATOR_ABI,
+      signerOrProvider
+    );
+    this.signerOrProvider = signerOrProvider;
+    this.creatorContractAddress = creatorContractAddress;
   }
 
   async getAddress() {
-    return this.signerOrProvider.getAddress()
+    return this.signerOrProvider.getAddress();
   }
 
   async approveWETH() {
@@ -41,7 +48,7 @@ export class CreatorContract {
 
   async depositFunds(eth) {
     console.log("creatorContractAddress", this.creatorContractAddress);
-    return this.contract.deposit(eth)
+    return this.contract.deposit(eth);
   }
 
   async withdrawFundsCreator() {
@@ -62,14 +69,13 @@ export class CreatorContract {
   }
 
   async fanDepositAmount() {
-    const address = this.getAddress()
+    const address = this.getAddress();
     return await this.contract.functions.fanAmount(address);
   }
 
   async totalNumberOfDeposits() {
     return await this.contract.functions.totalRawDepositCount();
   }
-
 }
 
 export class BurnerContract {

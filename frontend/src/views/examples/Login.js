@@ -17,7 +17,7 @@ import {
 } from "reactstrap";
 
 import DemoNavbar from "components/Navbars/DemoNavbar.js";
-import SimpleFooter from "components/Footers/SimpleFooter.js";
+import CardsFooter from "components/Footers/CardsFooter";
 
 class Login extends React.Component {
   componentDidMount() {
@@ -159,7 +159,7 @@ class Login extends React.Component {
             </Container>
           </section>
         </main>
-        <SimpleFooter />
+        <CardsFooter />
       </>
     );
   }
