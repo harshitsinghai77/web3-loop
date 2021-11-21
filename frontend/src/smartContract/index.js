@@ -48,7 +48,7 @@ export class CreatorContract {
 
   async depositFunds(eth) {
     console.log("creatorContractAddress", this.creatorContractAddress);
-    return this.contract.deposit(100000);
+    return this.contract.deposit(eth);
   }
 
   async withdrawFundsCreator() {
