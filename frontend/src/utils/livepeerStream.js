@@ -38,7 +38,10 @@ export const createLivepeerStream = async (streamName) => {
     },
     {
       headers: {
-        "content-type": "application/json",
+        'content-type': 'application/json',
+        'access-control-allow-credentials': 'true',
+        'access-control-expose-headers': '*',
+        "Access-Control-Allow-Origin": "*",
         authorization: `Bearer ${API_KEY}`, // API Key needs to be passed as a header
       },
     }
