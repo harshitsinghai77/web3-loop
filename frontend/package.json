@@ -41,7 +41,7 @@
     "@craco/craco": "^6.4.1",
     "@toruslabs/torus-embed": "^1.14.0",
     "@walletconnect/web3-provider": "^1.6.6",
-    "axios": "^0.24.0",
+    "axios": "^0.21.1",
     "babel-eslint": "10.x",
     "bootstrap": "4.3.1",
     "burner-provider": "^1.0.38",
