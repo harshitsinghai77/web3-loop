@@ -27,7 +27,7 @@ const Profile = (props) => {
   const [creatorIpfsHash, SetCreatorIpfsHash] = useState();
 
   const [creatorExists, setCreatorExists] = useState();
-  const [staked, setStaked] = useState();
+  const [stats, setStats] = useState({});
   const creatorAddress = props.match.params.address;
 
   useEffect(() => {
@@ -51,6 +51,9 @@ const Profile = (props) => {
         creatorContractAddress[0]
       );
       const creatorBalance = await creatorContract.creatorBalance();
+      const fanCount = await creatorContract.totalFanCount();
+      const fanDepositAmount = 0
+      //await creatorContract.fanDepositAmount();
 
       let userData = await retrieveDataFromIPFS(creatorHash);
       userData = userData.data;
@@ -63,7 +66,11 @@ const Profile = (props) => {
       setCreatorId(id);
       SetCreatorIpfsHash(creatorHash);
       setCreatorContractAddress(creatorContractAddress);
-      setStaked(creatorBalance.toString());
+      setStats({
+        creatorBalance: creatorBalance.toString(),
+        fanCount: fanCount.toString(),
+        fanDepositAmount: fanDepositAmount.toString(),
+      });
     };
 
     getCreatorId();
@@ -210,15 +217,15 @@ const Profile = (props) => {
                       <Col className="order-lg-1" lg="4">
                         <div className="card-profile-stats d-flex justify-content-center">
                           <div>
-                            <span className="heading">22</span>
+                            <span className="heading">{stats.fanCount}</span>
                             <span className="description">Stakers</span>
                           </div>
                           <div>
-                            <span className="heading">{staked}</span>
+                            <span className="heading">{stats.creatorBalance}</span>
                             <span className="description">Staked</span>
                           </div>
                           <div>
-                            <span className="heading">89</span>
+                            <span className="heading">{stats.fanDepositAmount}</span>
                             <span className="description">Earned</span>
                           </div>
                         </div>
