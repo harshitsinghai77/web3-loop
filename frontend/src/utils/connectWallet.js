@@ -14,7 +14,7 @@ const web3Modal = new Web3Modal({
     walletconnect: {
       package: WalletConnectProvider, // required
       options: {
-        infuraId: "460f40a260564ac4a4f4b3fffb032dad", 
+        infuraId: "460f40a260564ac4a4f4b3fffb032dad",
       },
     },
     fortmatic: {

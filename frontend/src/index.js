@@ -5,7 +5,6 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import "./assets/vendor/nucleo/css/nucleo.css";
 import "./assets/vendor/font-awesome/css/font-awesome.min.css";
 import "./assets/scss/loop.scss?v1.1.0";
-import "./assets/scss/livepeer.scss";
 import "./assets/css/landing-page.css";
 
 import Index from "views/Index.js";
@@ -14,7 +13,7 @@ import Creators from "views/examples/Creators.js";
 import Login from "views/examples/Login.js";
 import Profile from "views/examples/Profile.js";
 import Register from "views/examples/Register.js";
-import Livepeer from "views/Livepeer/Livepeer";
+import Livepeer from "views/livepeer/Livepeer";
 import { StateProvider } from "./store/store";
 
 ReactDOM.render(
@@ -43,9 +42,11 @@ ReactDOM.render(
         <Route path="/creators">
           <Creators />
         </Route>
-        <Route path="/livepeer">
-          <Livepeer />
-        </Route>
+        <Route
+          path="/stream/:streamId/:playbackId"
+          exact
+          render={(props) => <Livepeer {...props} />}
+        />
         <Redirect to="/" />
       </Switch>
     </BrowserRouter>

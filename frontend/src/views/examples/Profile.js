@@ -1,36 +1,40 @@
 import React, { useEffect, useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import { Button, Card, Container, Row, Col } from "reactstrap";
 import { BigNumber } from "@ethersproject/bignumber";
 
 import DemoNavbar from "components/Navbars/DemoNavbar.js";
 import CardsFooter from "components/Footers/CardsFooter.js";
 import HeroComponent from "../../components/Hero/hero";
-import SpinnerComponent from "../../components/Spinner";
+import {
+  SpinnerComponent,
+  SpinnerComponentTailSpin,
+} from "../../components/Spinner";
 import { burnerContract, CreatorContract } from "../../smartContract";
 import {
   retrieveDataFromIPFS,
   retrieveImageFromIPFS,
 } from "../../utils/ipfsConfig";
 import { getLocalProvider } from "../../utils/connectWallet";
-import { createLivepeerStream } from "../../utils/createLivepeerStream";
+import { createLivepeerStream } from "../../utils/livepeerStream";
 import { store } from "../../store/store";
-import { STREAM_CREATED } from "../../store/types";
 
 const defaultImage =
   "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y";
 
 const Profile = (props) => {
   const globalState = useContext(store);
-  const { dispatch } = globalState;
   const { web3Provider } = globalState.state;
 
   const [userData, setUserData] = useState();
   const [creatorContractAddress, setCreatorContractAddress] = useState();
-  const [creatorId, setCreatorId] = useState();
-  const [creatorIpfsHash, SetCreatorIpfsHash] = useState();
+  const [isStreamCreated, setIsStreamCreated] = useState();
+
+  const [liveStream, setLivestream] = useState();
+  // const [creatorId, setCreatorId] = useState();
 
   const [creatorExists, setCreatorExists] = useState();
-  const [stats, setStats] = useState({});
+  const [stats, setStats] = useState();
   const creatorAddress = props.match.params.address;
 
   useEffect(() => {
@@ -57,6 +61,11 @@ const Profile = (props) => {
       const fanCount = await creatorContract.totalFanCount();
       const fanDepositAmount = 0;
       //await creatorContract.fanDepositAmount();
+      const stats = {
+        creatorBalance: creatorBalance.toString(),
+        fanCount: fanCount.toString(),
+        fanDepositAmount: fanDepositAmount.toString(),
+      };
 
       let userData = await retrieveDataFromIPFS(creatorHash);
       userData = userData.data;
@@ -66,14 +75,9 @@ const Profile = (props) => {
       userData["imgSrc"] = imgSrc;
 
       setUserData(userData);
-      setCreatorId(id);
-      SetCreatorIpfsHash(creatorHash);
+      // setCreatorId(id);
       setCreatorContractAddress(creatorContractAddress);
-      setStats({
-        creatorBalance: creatorBalance.toString(),
-        fanCount: fanCount.toString(),
-        fanDepositAmount: fanDepositAmount.toString(),
-      });
+      setStats(stats);
     };
 
     getCreatorId();
@@ -93,17 +97,16 @@ const Profile = (props) => {
   };
 
   const createLiveStream = async () => {
+    setIsStreamCreated(true);
     const streamCreateResponse = await createLivepeerStream(creatorAddress);
     if (streamCreateResponse) {
-      const { id: streamId, playbackId, streamKey } = streamCreateResponse.data;
-      dispatch({
-        type: STREAM_CREATED,
-        payload: {
-          streamId,
-          playbackId,
-          streamKey,
-        },
+      const { id: streamId, playbackId, streamKey } = streamCreateResponse;
+      setLivestream({
+        streamId: streamId,
+        playbackId: playbackId,
+        streamKey: streamKey,
       });
+      setIsStreamCreated(false);
     }
   };
 
@@ -203,7 +206,6 @@ const Profile = (props) => {
                           >
                             Go Live
                           </Button>
-
                           <Button
                             className="mr-4"
                             color="info"
@@ -233,24 +235,26 @@ const Profile = (props) => {
                         </div>
                       </Col>
                       <Col className="order-lg-1" lg="4">
-                        <div className="card-profile-stats d-flex justify-content-center">
-                          <div>
-                            <span className="heading">{stats.fanCount}</span>
-                            <span className="description">Stakers</span>
+                        {stats && (
+                          <div className="card-profile-stats d-flex justify-content-center">
+                            <div>
+                              <span className="heading">{stats.fanCount}</span>
+                              <span className="description">Stakers</span>
+                            </div>
+                            <div>
+                              <span className="heading">
+                                {stats.creatorBalance}
+                              </span>
+                              <span className="description">Staked</span>
+                            </div>
+                            <div>
+                              <span className="heading">
+                                {stats.fanDepositAmount}
+                              </span>
+                              <span className="description">Earned</span>
+                            </div>
                           </div>
-                          <div>
-                            <span className="heading">
-                              {stats.creatorBalance}
-                            </span>
-                            <span className="description">Staked</span>
-                          </div>
-                          <div>
-                            <span className="heading">
-                              {stats.fanDepositAmount}
-                            </span>
-                            <span className="description">Earned</span>
-                          </div>
-                        </div>
+                        )}
                       </Col>
                     </Row>
                     <div className="text-center mt-5">
@@ -259,6 +263,37 @@ const Profile = (props) => {
                         {truncateString(userData.creatorAddress, 10)}
                       </div>
 
+                      {isStreamCreated && (
+                        <div className="m-auto">
+                          Creating stream, please wait.
+                          <SpinnerComponentTailSpin />
+                        </div>
+                      )}
+                      {liveStream && (
+                        <>
+                          <div className="mb-2">
+                            You stream has been created.
+                          </div>
+                          <div className="mb-2">
+                            Ingest URL: rtmp://rtmp.livepeer.com/live/ <br />
+                            Stream Key: {liveStream.streamKey} <br />
+                            Playback URL: {liveStream.playbackId}
+                          </div>
+                          <Link
+                            to={`/stream/${liveStream.streamId}/${liveStream.playbackId}`}
+                          >
+                            <Button color="info" size="sm">
+                              Take me home
+                            </Button>
+                          </Link>
+                          <div className="text-red-500 text-sm mt-2">
+                            <span className="font-bold">Note:&nbsp;</span> To
+                            start a video stream, please use a broadcaster
+                            software like OBS/Streamyard on desktop, or Larix on
+                            mobile
+                          </div>
+                        </>
+                      )}
                       <div className="h6 mt-4">
                         <i className="ni business_briefcase-24 mr-2" />
                         {userData.fullName}

@@ -82,7 +82,7 @@ const Landing = () => {
             </Link>
             <Row>
               {creatorsList.map((el) => (
-                <Col className="mb-5 mb-lg-0" lg="3" md="6">
+                <Col className="mb-5 mb-lg-0" lg="3" md="6" key={el.name}>
                   <div className="px-4">
                     <img
                       alt={el.name}

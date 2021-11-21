@@ -28,7 +28,7 @@ const streamProfiles = [
     height: 360,
   },
 ];
-const API_KEY = "e8436816-4777-4f7e-8d0f-01c2e493a825";
+const API_KEY = "cc7959db-81ff-4455-8084-7eca8195f352";
 export const createLivepeerStream = async (streamName) => {
   const createStreamResponse = await apiInstance.post(
     "/stream",
@@ -39,7 +39,7 @@ export const createLivepeerStream = async (streamName) => {
     {
       headers: {
         "content-type": "application/json",
-        authorization: `Bearer ${API_KEY}`,
+        authorization: `Bearer ${API_KEY}`, // API Key needs to be passed as a header
       },
     }
   );
@@ -49,11 +49,11 @@ export const createLivepeerStream = async (streamName) => {
   }
 };
 
-export const getStreamStatus = (apiKey, streamId) => {
+export const getStreamStatus = (streamId) => {
   return apiInstance.get(`/stream/${streamId}`, {
     headers: {
       "content-type": "application/json",
-      authorization: `Bearer ${apiKey}`,
+      authorization: `Bearer ${API_KEY}`,
     },
   });
 };

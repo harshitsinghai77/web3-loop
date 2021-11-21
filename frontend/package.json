@@ -7,7 +7,6 @@
     "type": "git",
     "url": "git+https://github.com/creativetimofficial/argon-design-system-react.git"
   },
-  "proxy": "http://localhost:5000",
   "keywords": [
     "react",
     "reactjs",
@@ -30,9 +29,9 @@
   },
   "homepage": "https://demos.creative-tim.com/argon-design-system-react/",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build && gulp licenses",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build && gulp licenses",
+    "test": "craco test",
     "eject": "react-scripts eject",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
     "compile-sass": "node-sass src/assets/scss/argon-design-system-react.scss src/assets/css/argon-design-system-react.css",
@@ -49,6 +48,7 @@
     "not op_mini all"
   ],
   "dependencies": {
+    "@craco/craco": "^6.4.1",
     "@toruslabs/torus-embed": "^1.14.0",
     "@typescript-eslint/eslint-plugin": "2.x",
     "@typescript-eslint/parser": "2.x",
@@ -67,6 +67,7 @@
     "ethers": "^5.5.1",
     "fortmatic": "^2.2.1",
     "headroom.js": "0.11.0",
+    "hls.js": "^1.1.1",
     "ipfs-api": "^26.1.2",
     "ipfs-http-client": "^54.0.0",
     "moment": "2.24.0",
@@ -81,18 +82,24 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "reactstrap": "8.10.1",
-    "tailwindcss": "^2.2.19",
+    "video.js": "^7.17.0",
+    "videojs-contrib-hls": "^5.15.0",
+    "videojs-contrib-quality-levels": "^2.1.0",
+    "videojs-hls-quality-selector": "^1.1.4",
     "web3modal": "^1.9.4"
   },
   "devDependencies": {
     "@types/googlemaps": "3.39.2",
     "@types/markerclustererplus": "2.1.33",
     "@types/react": "16.9.19",
+    "autoprefixer": "^9.8.8",
     "eslint-config-react": "^1.1.7",
     "eslint-plugin-flowtype": "4.x",
     "gulp": "4.0.2",
     "gulp-append-prepend": "1.0.8",
     "jquery": "3.4.1",
+    "postcss": "^7.0.39",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
     "typescript": "3.7.5"
   }
 }

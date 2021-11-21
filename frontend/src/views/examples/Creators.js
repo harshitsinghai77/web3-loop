@@ -10,7 +10,7 @@ import {
   retrieveDataFromIPFS,
   retrieveImageFromIPFS,
 } from "../../utils/ipfsConfig";
-import SpinnerComponent from "../../components/Spinner";
+import { SpinnerComponent } from "../../components/Spinner";
 
 const Creators = () => {
   const [creators, setCreators] = useState();
