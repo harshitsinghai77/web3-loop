@@ -35,6 +35,7 @@ const Register = () => {
   const [address, setAddress] = useState();
   const [showAlert, setShowAlert] = useState(false);
   const [userImage, setUserImage] = useState();
+  const [creatorAdded, setCreatorAdded] = useState(false);
 
   const history = useHistory();
 
@@ -90,7 +91,7 @@ const Register = () => {
     const signer = web3Provider.getSigner();
     const contract = new Contract(signer);
     contract.addCreator(hash).then(() => {
-      history.push("/profile/" + address);
+      setCreatorAdded(true);
     });
   };
 
@@ -110,7 +111,18 @@ const Register = () => {
             <span />
             <span />
           </div>
-
+          {
+            creatorAdded && (
+              <UncontrolledAlert color="success" fade={false}>
+                <span className="alert-inner--icon">
+                  <i className="ni ni-like-2" />
+                </span>{" "}
+                <span className="alert-inner--text">
+                  <strong>Success!</strong> Creator registered transaction has been sent!
+                </span>
+              </UncontrolledAlert>
+            )
+          }
           <Container className="pt-lg-7 register-overlay">
             <Row className="justify-content-center">
               <Col lg="5">

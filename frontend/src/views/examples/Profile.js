@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Button, Card, Container, Row, Col } from "reactstrap";
+import { Button, Card, Container, Row, Col, UncontrolledAlert } from "reactstrap";
 import { BigNumber } from "@ethersproject/bignumber";
 
 import DemoNavbar from "components/Navbars/DemoNavbar.js";
@@ -29,6 +29,8 @@ const Profile = (props) => {
   const [creatorExists, setCreatorExists] = useState();
   const [stats, setStats] = useState({});
   const creatorAddress = props.match.params.address;
+
+  const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
@@ -80,6 +82,7 @@ const Profile = (props) => {
     e.preventDefault();
     if (!web3Provider) {
       console.log("web3Provider is not defined");
+      setShowAlert(true);
       return;
     }
     const contract = new CreatorContract(
@@ -93,6 +96,7 @@ const Profile = (props) => {
     e.preventDefault();
     if (!web3Provider) {
       console.log("web3Provider is not defined");
+      setShowAlert(true);
       return;
     }
 
@@ -107,6 +111,7 @@ const Profile = (props) => {
     e.preventDefault();
     if (!web3Provider) {
       console.log("Web3Model not found");
+      setShowAlert(true);
       return;
     }
     const contract = new CreatorContract(
@@ -137,6 +142,19 @@ const Profile = (props) => {
             <span />
             <span />
           </div>
+
+          {
+            showAlert && (
+              <UncontrolledAlert color="warning" fade={false}>
+                <span className="alert-inner--icon">
+                  <i className="ni ni-notification-70" />
+                </span>{" "}
+                <span className="alert-inner--text">
+                  <strong>Warning!</strong> Wallet is not connected!
+                </span>
+              </UncontrolledAlert>
+            )
+          }
 
           <div className="separator separator-bottom separator-skew">
             <svg
