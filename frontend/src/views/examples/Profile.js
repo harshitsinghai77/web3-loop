@@ -103,7 +103,7 @@ const Profile = (props) => {
       web3Provider.getSigner(),
       creatorContractAddress[0]
     );
-    await contract.depositFunds(BigNumber.from((10 ** 18) * 0.5));
+    await contract.depositFunds(BigNumber.from("42"));
   };
 
   const createLiveStream = async () => {
@@ -235,16 +235,16 @@ const Profile = (props) => {
                             onClick={withdrawPool}
                             size="sm"
                           >
-                            Withdraw Pool
+                            Withdraw
                           </Button>
 
                           <Button
-                            className="float-right"
+                            className="mr-4"
                             color="default"
                             onClick={depositCreator}
                             size="sm"
                           >
-                            Deposit Pool
+                            Deposit
                           </Button>
 
                           <Button
