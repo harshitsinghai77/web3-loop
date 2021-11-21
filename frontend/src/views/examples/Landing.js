@@ -17,7 +17,7 @@ const creatorsList = [
     name: "Romina Hadid",
     username: "romina_hadid",
     imgURL:
-      "https://www.brandingmag.com/wp-content/uploads/2020/08/Jennifer_Quigley-Jones_001_COVER.jpg",
+      "https://images.unsplash.com/photo-1534008757030-27299c4371b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Z2lybHN8ZW58MHwwfDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
   },
   {
     name: "Alexander Smith",
@@ -86,12 +86,8 @@ const Landing = () => {
                   <div className="px-4">
                     <img
                       alt={el.name}
-                      className="img-center img-fluid shadow shadow-lg--hover"
+                      className="rounded-none"
                       src={el.imgURL}
-                      style={{
-                        width: "200px",
-                        height: "100px",
-                      }}
                     />
                     <div className="pt-4 text-center">
                       <h5 className="title">
@@ -140,7 +136,7 @@ const Landing = () => {
                 </p>
               </Col>
             </Row>
-            <Row className="row-grid mt-5">
+            <Row className="row-grid mt-5 ml-6">
               <Col lg="4">
                 <div className="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-primary">
                   <i className="ni ni-settings text-primary" />

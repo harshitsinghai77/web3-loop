@@ -6,11 +6,10 @@ import "./assets/vendor/nucleo/css/nucleo.css";
 import "./assets/vendor/font-awesome/css/font-awesome.min.css";
 import "./assets/scss/loop.scss?v1.1.0";
 import "./assets/css/landing-page.css";
+import "./assets/scss/livepeer.scss";
 
-import Index from "views/Index.js";
 import Landing from "views/examples/Landing.js";
 import Creators from "views/examples/Creators.js";
-import Login from "views/examples/Login.js";
 import Profile from "views/examples/Profile.js";
 import Register from "views/examples/Register.js";
 import Livepeer from "views/livepeer/Livepeer";
@@ -20,17 +19,7 @@ ReactDOM.render(
   <StateProvider>
     <BrowserRouter>
       <Switch>
-        <Route
-          path="/landing-page"
-          exact
-          render={(props) => <Index {...props} />}
-        />
         <Route path="/" exact render={(props) => <Landing {...props} />} />
-        <Route
-          path="/login-page"
-          exact
-          render={(props) => <Login {...props} />}
-        />
         <Route
           path="/profile/:address"
           exact

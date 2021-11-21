@@ -8,9 +8,9 @@ const CardsFooter = () => (
       <Container>
         <Row className="row-grid align-items-center my-md">
           <Col lg="6">
-            <h4 className="mb-0 font-weight-light">
+            <h2 className="mb-0 font-medium text-xl">
               Have you supported your favourite creator yet?
-            </h4>
+            </h2>
           </Col>
           <Col className="text-lg-center btn-wrapper" lg="6">
             <Button

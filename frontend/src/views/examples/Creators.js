@@ -33,7 +33,6 @@ const Creators = () => {
           return creator;
         })
       );
-      console.log("creators", creators);
       setCreators(creators);
     };
     getCreatorsFromContract();
@@ -129,7 +128,7 @@ const Creators = () => {
                   </Col>
                 ))
               ) : (
-                <Col className="center">
+                <Col className="flex justify-center">
                   <SpinnerComponent />
                 </Col>
               )}

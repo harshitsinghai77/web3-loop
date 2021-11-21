@@ -1,9 +1,7 @@
 import Loader from "react-loader-spinner";
 
 export const SpinnerComponent = () => (
-  <div className="text-center mb-5 mt-5">
-    <Loader type="MutatingDots" color="#00BFFF" height={80} width={80} />
-  </div>
+  <Loader type="MutatingDots" color="#00BFFF" height={80} width={80} />
 );
 
 export const SpinnerComponentTailSpin = () => (

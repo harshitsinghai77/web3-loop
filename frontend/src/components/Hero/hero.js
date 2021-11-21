@@ -5,7 +5,7 @@ import BackgroundAnimation from "../BackgroundAnimation/BackgroundAnimation";
 
 const HeroComponent = ({ isLanding, size }) => (
   <Container className="py-lg-md d-flex">
-    <div className="col px-0">
+    <div className="col px-5">
       <Row>
         {isLanding && (
           <Col lg="6">

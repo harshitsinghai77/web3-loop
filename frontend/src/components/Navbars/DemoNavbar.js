@@ -4,11 +4,6 @@ import Headroom from "headroom.js";
 import ConnectWallet from "./ConnectWallet";
 import {
   UncontrolledCollapse,
-  DropdownMenu,
-  DropdownItem,
-  DropdownToggle,
-  UncontrolledDropdown,
-  Media,
   NavbarBrand,
   Navbar,
   NavItem,
@@ -84,12 +79,14 @@ class DemoNavbar extends React.Component {
                   </Row>
                 </div>
                 <Nav className="navbar-nav-hover align-items-lg-center" navbar>
-                    <Link to="/register" className="mr-3">
-                      Register
-                    </Link>
-                    <Link to="/creators" className="mr-3">
-                      Creators
-                    </Link>
+                  <Link to="/register" className="mr-3 text-white" nav>
+                    <i className="ni ni-collection d-lg-none mr-1" />
+                    <span className="nav-link-inner--text">Register</span>
+                  </Link>
+                  <Link to="/creators" className="mr-3 text-white">
+                    <i className="ni ni-collection d-lg-none mr-1" />
+                    <span className="nav-link-inner--text">Creators</span>
+                  </Link>
                 </Nav>
                 <Nav className="align-items-lg-center ml-lg-auto" navbar>
                   <NavItem className="d-none d-lg-block ml-lg-4">

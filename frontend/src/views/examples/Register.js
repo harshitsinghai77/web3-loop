@@ -111,25 +111,24 @@ const Register = () => {
             <span />
             <span />
           </div>
-          {
-            creatorAdded && (
-              <UncontrolledAlert color="success" fade={false}>
-                <span className="alert-inner--icon">
-                  <i className="ni ni-like-2" />
-                </span>{" "}
-                <span className="alert-inner--text">
-                  <strong>Success!</strong> Creator registered transaction has been sent!
-                </span>
-              </UncontrolledAlert>
-            )
-          }
+          {creatorAdded && (
+            <UncontrolledAlert color="success" fade={false}>
+              <span className="alert-inner--icon">
+                <i className="ni ni-like-2" />
+              </span>{" "}
+              <span className="alert-inner--text">
+                <strong>Success!</strong> Creator registered transaction has
+                been sent!
+              </span>
+            </UncontrolledAlert>
+          )}
           <Container className="pt-lg-7 register-overlay">
             <Row className="justify-content-center">
               <Col lg="5">
                 <Card className="bg-secondary shadow border-0">
                   <CardHeader className="bg-white">
-                    <div className="text-muted text-center">
-                      <small>Register Creator</small>
+                    <div className="text-muted text-center text-lg">
+                      Register Creator
                     </div>
                   </CardHeader>
                   <CardBody className="px-lg-5 py-lg-5">

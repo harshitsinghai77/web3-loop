@@ -38,7 +38,6 @@ const Profile = (props) => {
   const [isStreamCreated, setIsStreamCreated] = useState();
 
   const [liveStream, setLivestream] = useState();
-  // const [creatorId, setCreatorId] = useState();
 
   const [creatorExists, setCreatorExists] = useState();
   const [stats, setStats] = useState();
@@ -84,7 +83,6 @@ const Profile = (props) => {
       userData["imgSrc"] = imgSrc;
 
       setUserData(userData);
-      // setCreatorId(id);
       setCreatorContractAddress(creatorContractAddress);
       setStats(stats);
     };
@@ -206,7 +204,7 @@ const Profile = (props) => {
                       <Col className="order-lg-2" lg="3">
                         <div className="card-profile-image">
                           <img
-                            alt="..."
+                            alt={userData.username}
                             className="my-rounded-cirlce"
                             src={
                               userData["imgSrc"]
@@ -222,24 +220,17 @@ const Profile = (props) => {
                       >
                         <div className="card-profile-actions py-4 mt-lg-0">
                           <Button
-                            className="mr-4"
                             color="info"
                             onClick={createLiveStream}
                             size="sm"
                           >
                             Go Live
                           </Button>
-                          <Button
-                            className="mr-4"
-                            color="info"
-                            onClick={withdrawPool}
-                            size="sm"
-                          >
+                          <Button color="info" onClick={withdrawPool} size="sm">
                             Withdraw
                           </Button>
 
                           <Button
-                            className="mr-4"
                             color="default"
                             onClick={depositCreator}
                             size="sm"
@@ -248,7 +239,6 @@ const Profile = (props) => {
                           </Button>
 
                           <Button
-                            className="float-right"
                             color="default"
                             onClick={approveDeposit}
                             size="sm"
@@ -287,10 +277,12 @@ const Profile = (props) => {
                       </div>
 
                       {isStreamCreated && (
-                        <div className="m-auto">
+                        <>
                           Creating stream, please wait.
-                          <SpinnerComponentTailSpin />
-                        </div>
+                          <div className="flex justify-center">
+                            <SpinnerComponentTailSpin />
+                          </div>
+                        </>
                       )}
                       {liveStream && (
                         <>
@@ -354,7 +346,9 @@ const Profile = (props) => {
                     </div>
                   </>
                 ) : (
-                  <SpinnerComponent />
+                  <div className="flex justify-center my-5">
+                    <SpinnerComponent />
+                  </div>
                 )}
               </div>
             </Card>

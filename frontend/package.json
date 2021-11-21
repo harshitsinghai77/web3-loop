@@ -1,35 +1,26 @@
 {
-  "name": "argon-design-system-react",
+  "name": "loop-dapp",
   "version": "1.1.0",
-  "description": "React version of Argon Design System by Creative Tim",
+  "description": "Loop - Supporting creators 3.",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/creativetimofficial/argon-design-system-react.git"
+    "url": "git+https://github.com/shreyaspapi/cautious-palm-tree.git"
   },
   "keywords": [
     "react",
     "reactjs",
-    "argon",
-    "argon-react",
-    "design",
-    "design-react",
-    "argon-design",
-    "argon-design-react",
-    "kit",
-    "react-kit",
-    "argon-design-system",
-    "argon-design-system-react",
-    "design-system-react"
+    "dapp",
+    "content-creator3.0"
   ],
-  "author": "Creative Tim",
+  "author": "harshitsinghai77",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/creativetimofficial/argon-design-system-react/issues"
+    "url": "https://github.com/shreyaspapi/cautious-palm-tree"
   },
   "scripts": {
     "start": "craco start",
-    "build": "craco build && gulp licenses",
+    "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
@@ -94,8 +85,6 @@
     "autoprefixer": "^9.8.8",
     "eslint-config-react": "^1.1.7",
     "eslint-plugin-flowtype": "4.x",
-    "gulp": "4.0.2",
-    "gulp-append-prepend": "1.0.8",
     "jquery": "3.4.1",
     "postcss": "^7.0.39",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
