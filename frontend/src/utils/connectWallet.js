@@ -5,7 +5,7 @@ import { Web3Provider } from "@ethersproject/providers";
 import Fortmatic from "fortmatic";
 import Torus from "@toruslabs/torus-embed";
 
-const INFURA_ID = "460f40a260564ac4a4f4b3fffb032dad";
+const INFURA_ID = "6f006a0521514865af0036763e47b34e";
 
 const web3Modal = new Web3Modal({
   network: "mainnet", // optional
