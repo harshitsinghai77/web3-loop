@@ -7,6 +7,7 @@
     "type": "git",
     "url": "git+https://github.com/creativetimofficial/argon-design-system-react.git"
   },
+  "proxy": "http://localhost:5000",
   "keywords": [
     "react",
     "reactjs",
