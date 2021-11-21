@@ -5,7 +5,7 @@ import { Web3Provider } from "@ethersproject/providers";
 import Fortmatic from "fortmatic";
 import Torus from "@toruslabs/torus-embed";
 
-const INFURA_ID = "a9bed7baa25d43bbbfdad36243344d4e";
+const INFURA_ID = "460f40a260564ac4a4f4b3fffb032dad";
 
 const web3Modal = new Web3Modal({
   network: "mainnet", // optional
@@ -14,7 +14,7 @@ const web3Modal = new Web3Modal({
     walletconnect: {
       package: WalletConnectProvider, // required
       options: {
-        infuraId: "19b2294ebe0247a5a7beb92164520320", // nft-market infura id
+        infuraId: "460f40a260564ac4a4f4b3fffb032dad", 
       },
     },
     fortmatic: {
