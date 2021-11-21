@@ -279,7 +279,7 @@ const Profile = (props) => {
                       {isStreamCreated && (
                         <>
                           Creating stream, please wait.
-                          <div className="flex justify-center">
+                          <div className="flex justify-content-center">
                             <SpinnerComponentTailSpin />
                           </div>
                         </>
@@ -346,7 +346,7 @@ const Profile = (props) => {
                     </div>
                   </>
                 ) : (
-                  <div className="flex justify-center my-5">
+                  <div className="flex justify-content-center my-5">
                     <SpinnerComponent />
                   </div>
                 )}

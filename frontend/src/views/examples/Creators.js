@@ -124,7 +124,7 @@ const Creators = () => {
                   </Col>
                 ))
               ) : (
-                <Col className="flex justify-center">
+                <Col className="flex justify-content-center">
                   <SpinnerComponent />
                 </Col>
               )}
