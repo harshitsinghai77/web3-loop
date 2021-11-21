@@ -36,7 +36,7 @@ ReactDOM.render(
           exact
           render={(props) => <Profile {...props} />}
         />
-        <Route path="/register-page">
+        <Route path="/register">
           <Register />
         </Route>
         <Route path="/creators">

@@ -55,7 +55,7 @@ class Login extends React.Component {
                   <Button
                     className="btn-white"
                     color="default"
-                    to="/register-page"
+                    to="/register"
                     tag={Link}
                   >
                     Register Page

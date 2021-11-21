@@ -306,7 +306,7 @@ const Profile = (props) => {
                             to={`/stream/${liveStream.streamId}/${liveStream.playbackId}`}
                           >
                             <Button color="info" size="sm">
-                              Take me home
+                              Take me to the stream
                             </Button>
                           </Link>
                           <div className="text-red-500 text-sm mt-2">
