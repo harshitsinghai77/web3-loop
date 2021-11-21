@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
@@ -28,11 +29,16 @@ contract Creator {
     ILendingPool lendingPool;
     IERC20 wethToken;
     address creatorAddr;
-    uint totalDepositValue;
     
+    uint public totalFanCount;
+    uint public totalRawDepositCount;
+    uint public totalDepositValue;
+
     mapping (address => uint) public fanAmount;
     
-    // WETH 0xc778417e063141139fce010982780140aa0cd5ab
+    // Mainnet WETH 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2
+    // Kovan WETH 0xd0A1E359811322d97991E03f863a0C30C2cF029C
+    // Rinkeby WETH 0xc778417e063141139fce010982780140aa0cd5ab
     constructor(address assetAddr, address aLendingPoolAddr, address creatorAddrParam) {
         creatorAddr = creatorAddrParam;
         lendingPool = ILendingPool(aLendingPoolAddr);
@@ -55,15 +61,13 @@ contract Creator {
         if (amount > 0) {
             wethToken.approve(address(lendingPool), amount);
             lendingPool.deposit(address(wethToken), amount, address(this), 0);
-            
-            totalDepositValue += amount;
         }
 
         // aTokensRec = IERC20(aToken).balanceOf(msg.sender) - initialBalance;
         // require(aTokensRec > minATokens, "High Slippage");
     }
     
-    function currentBalance() public view returns (uint) {
+    function currentContractBalance() public view returns (uint) {
         return wethToken.balanceOf(address(this));
     }
     
@@ -73,7 +77,13 @@ contract Creator {
         bool success = wethToken.transferFrom(msg.sender, address(this), amount);
         require(success, "Transfer to contract failed");
         
+        if (fanAmount[msg.sender] == 0) {
+            totalFanCount += 1;
+        }
+        
         fanAmount[msg.sender] += amount;
+        totalDepositValue += amount;
+        totalRawDepositCount += 1;
         _depositIntoAavePool(amount);
     }
     
@@ -84,7 +94,7 @@ contract Creator {
         wethToken.approve(msg.sender, interest);
         wethToken.transfer(msg.sender, interest);
         
-        _depositIntoAavePool(currentBalance());
+        _depositIntoAavePool(currentContractBalance());
     }
     
     function withdrawForFan() public onlyFan {
@@ -93,12 +103,9 @@ contract Creator {
         wethToken.approve(msg.sender, fanAmount[msg.sender]);
         wethToken.transfer(msg.sender, fanAmount[msg.sender]);
         
-        _depositIntoAavePool(currentBalance());
+        _depositIntoAavePool(currentContractBalance());
         fanAmount[msg.sender] = 0;
+        totalFanCount -= 1;
         totalDepositValue -= fanAmount[msg.sender];
-    }
-    
-    function destruct() public onlyCreator {
-        selfdestruct(payable(msg.sender));
     }
 }

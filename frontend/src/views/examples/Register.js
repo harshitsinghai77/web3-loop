@@ -18,9 +18,8 @@ import {
   Col,
 } from "reactstrap";
 
-import HeroComponent from "../../components/Hero/hero";
 import DemoNavbar from "components/Navbars/DemoNavbar.js";
-import SimpleFooter from "components/Footers/SimpleFooter.js";
+import CardsFooter from "../../components/Footers/CardsFooter";
 
 import UploadImage from "./UploadImage.js";
 import { Contract } from "../../smartContract";
@@ -65,6 +64,7 @@ const Register = () => {
           });
         }
       });
+      return;
     }
 
     if (!userImage) {
@@ -87,12 +87,10 @@ const Register = () => {
 
     const hash = await uploadMetadataToIPFS(jsonData, socialLinks, userImage);
 
-    console.log(web3Provider)
-
     const signer = web3Provider.getSigner();
     const contract = new Contract(signer);
-    contract.addCreator(hash).then((resp) => {
-      history.push("/" + address);
+    contract.addCreator(hash).then(() => {
+      history.push("/profile/" + address);
     });
   };
 
@@ -166,7 +164,7 @@ const Register = () => {
                         <InputGroup className="input-group-alternative mb-3">
                           <InputGroupAddon addonType="prepend">
                             <InputGroupText>
-                              <i className="ni ni-single-copy-04" />
+                              <i className="fa fa-youtube" />
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input
@@ -179,7 +177,7 @@ const Register = () => {
                         <InputGroup className="input-group-alternative mb-3">
                           <InputGroupAddon addonType="prepend">
                             <InputGroupText>
-                              <i className="ni ni-single-copy-04" />
+                              <i className="fa fa-instagram" />
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input
@@ -192,7 +190,7 @@ const Register = () => {
                         <InputGroup className="input-group-alternative mb-3">
                           <InputGroupAddon addonType="prepend">
                             <InputGroupText>
-                              <i className="ni ni-single-copy-04" />
+                              <i className="fa fa-twitter" />
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input
@@ -201,19 +199,6 @@ const Register = () => {
                             type="text"
                           />
                         </InputGroup>
-
-                        {/* <div className="text-right">
-													<Button
-														className="text-primary"
-														color="link"
-														size="sm"
-														onClick={() =>
-															onAddSocialLink()
-														}
-													>
-														Add Social Link
-													</Button>
-												</div> */}
                       </FormGroup>
 
                       <div className="text-muted font-italic">
@@ -230,31 +215,6 @@ const Register = () => {
                           )}
                         </small>
                       </div>
-                      <Row className="my-4">
-                        <Col xs="12">
-                          <div className="custom-control custom-control-alternative custom-checkbox">
-                            <input
-                              className="custom-control-input"
-                              id="customCheckRegister"
-                              type="checkbox"
-                            />
-                            <label
-                              className="custom-control-label"
-                              htmlFor="customCheckRegister"
-                            >
-                              <span>
-                                I agree with the{" "}
-                                <a
-                                  href="#pablo"
-                                  onClick={(e) => e.preventDefault()}
-                                >
-                                  Privacy Policy
-                                </a>
-                              </span>
-                            </label>
-                          </div>
-                        </Col>
-                      </Row>
                       <UncontrolledAlert
                         color="danger"
                         fade={false}
@@ -279,7 +239,7 @@ const Register = () => {
           </Container>
         </section>
       </main>
-      {/* <SimpleFooter /> */}
+      <CardsFooter />
     </>
   );
 };
