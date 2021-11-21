@@ -70,7 +70,6 @@
     "ipfs-http-client": "^54.0.0",
     "moment": "2.24.0",
     "node-sass": "^4.14.1",
-    "nouislider": "14.1.1",
     "react": "^17.0.1",
     "react-copy-to-clipboard": "^5.0.4",
     "react-datetime": "2.16.3",
@@ -81,6 +80,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "reactstrap": "8.10.1",
+    "tailwindcss": "^2.2.19",
     "web3modal": "^1.9.4"
   },
   "devDependencies": {

@@ -2,13 +2,13 @@
 @import "../../../node_modules/bootstrap/scss/functions";
 
 // Theme Variables
-@import "argon-design-system/variables";
+@import "loop/variables";
 
 // Bootstrap Core
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 
 // Theme Core
-@import "argon-design-system/theme";
+@import "loop/theme";
 
 // React Differences
 @import "react/react-differences";

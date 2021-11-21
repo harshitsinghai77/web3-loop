@@ -12,18 +12,21 @@ import {
   retrieveImageFromIPFS,
 } from "../../utils/ipfsConfig";
 import { getLocalProvider } from "../../utils/connectWallet";
+import { createLivepeerStream } from "../../utils/createLivepeerStream";
 import { store } from "../../store/store";
+import { STREAM_CREATED } from "../../store/types";
 
 const defaultImage =
   "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y";
 
 const Profile = (props) => {
   const globalState = useContext(store);
+  const { dispatch } = globalState;
   const { web3Provider } = globalState.state;
 
   const [userData, setUserData] = useState();
-  const [creatorId, setCreatorId] = useState();
   const [creatorContractAddress, setCreatorContractAddress] = useState();
+  const [creatorId, setCreatorId] = useState();
   const [creatorIpfsHash, SetCreatorIpfsHash] = useState();
 
   const [creatorExists, setCreatorExists] = useState();
@@ -80,6 +83,21 @@ const Profile = (props) => {
       creatorContractAddress[0]
     );
     await contract.depositFunds(BigNumber.from("42"));
+  };
+
+  const createLiveStream = async () => {
+    const streamCreateResponse = await createLivepeerStream(creatorAddress);
+    if (streamCreateResponse) {
+      const { id: streamId, playbackId, streamKey } = streamCreateResponse.data;
+      dispatch({
+        type: STREAM_CREATED,
+        payload: {
+          streamId,
+          playbackId,
+          streamKey,
+        },
+      });
+    }
   };
 
   const withdrawPool = async (e) => {
@@ -173,7 +191,7 @@ const Profile = (props) => {
                           <Button
                             className="mr-4"
                             color="info"
-                            onClick={depositCreator}
+                            onClick={createLiveStream}
                             size="sm"
                           >
                             Go Live
