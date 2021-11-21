@@ -5,7 +5,7 @@ import CREATOR_ABI from "../artifacts/creator_abi.json";
 import ERC20_ABI from "../artifacts/ERC20_abi.json";
 import { getLocalProvider } from "../utils/connectWallet";
 
-const contractAddress = "0x51520bd17744e71b97ac8b47fd4155416e72b30f";
+const contractAddress = "0x61D9f84EB56B0a835C42593B1E34BC217742A443";
 
 export class Contract {
   constructor(signerOrProvider) {
