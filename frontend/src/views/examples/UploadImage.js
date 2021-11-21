@@ -48,7 +48,7 @@ const UploadImage = ({ onImageUploaded }) => {
       <input {...getInputProps()} />
       {isDragActive ? (
         <Button block color="warning" type="button">
-          Drop it bitch
+          Drop
         </Button>
       ) : (
         <Button block color="default" type="button">
