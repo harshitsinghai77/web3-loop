@@ -79,12 +79,8 @@ const Creators = () => {
                       <Link to={`/profile/${el.creatorAddress}`}>
                         <img
                           alt="..."
-                          className="img-center img-fluid shadow shadow-lg--hover"
+                          className="rounded-t-lg"
                           src={el.imgSrc}
-                          style={{
-                            width: "200px",
-                            height: "100px",
-                          }}
                         />
                       </Link>
 

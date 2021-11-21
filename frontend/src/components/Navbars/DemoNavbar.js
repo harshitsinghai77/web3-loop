@@ -79,13 +79,13 @@ class DemoNavbar extends React.Component {
                   </Row>
                 </div>
                 <Nav className="navbar-nav-hover align-items-lg-center" navbar>
-                  <Link to="/register" className="mr-3 text-white" nav>
-                    <i className="ni ni-collection d-lg-none mr-1" />
-                    <span className="nav-link-inner--text">Register</span>
-                  </Link>
                   <Link to="/creators" className="mr-3 text-white">
                     <i className="ni ni-collection d-lg-none mr-1" />
                     <span className="nav-link-inner--text">Creators</span>
+                  </Link>
+                  <Link to="/register" className="mr-3 text-white" nav>
+                    <i className="ni ni-collection d-lg-none mr-1" />
+                    <span className="nav-link-inner--text">Register</span>
                   </Link>
                 </Nav>
                 <Nav className="align-items-lg-center ml-lg-auto" navbar>
