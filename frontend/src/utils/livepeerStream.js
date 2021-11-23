@@ -1,48 +1,19 @@
 import axios from "axios";
 
 const apiInstance = axios.create({
-  baseURL: "https://livepeer.com/api/",
-  timeout: 10000,
+  baseURL: "https://zxzqymfwui.execute-api.us-east-1.amazonaws.com/dev/stream/",
+  timeout: 20000,
 });
 
-const streamProfiles = [
-  {
-    name: "720p",
-    bitrate: 2000000,
-    fps: 30,
-    width: 1280,
-    height: 720,
-  },
-  {
-    name: "480p",
-    bitrate: 1000000,
-    fps: 30,
-    width: 854,
-    height: 480,
-  },
-  {
-    name: "360p",
-    bitrate: 500000,
-    fps: 30,
-    width: 640,
-    height: 360,
-  },
-];
-const API_KEY = "cc7959db-81ff-4455-8084-7eca8195f352";
 export const createLivepeerStream = async (streamName) => {
   const createStreamResponse = await apiInstance.post(
-    "/stream",
+    "/create-new-stream",
     {
-      name: streamName,
-      profiles: streamProfiles,
+      stream_name: streamName,
     },
     {
       headers: {
-        'content-type': 'application/json',
-        'access-control-allow-credentials': 'true',
-        'access-control-expose-headers': '*',
-        "Access-Control-Allow-Origin": "*",
-        authorization: `Bearer ${API_KEY}`, // API Key needs to be passed as a header
+        "content-type": "application/json",
       },
     }
   );
@@ -52,11 +23,17 @@ export const createLivepeerStream = async (streamName) => {
   }
 };
 
-export const getStreamStatus = (streamId) => {
-  return apiInstance.get(`/stream/${streamId}`, {
-    headers: {
-      "content-type": "application/json",
-      authorization: `Bearer ${API_KEY}`,
+export const getStreamStatus = async (streamId) => {
+  const response = await apiInstance.post(
+    `/stream-status`,
+    {
+      stream_id: streamId,
     },
-  });
+    {
+      headers: {
+        "content-type": "application/json",
+      },
+    }
+  );
+  return response;
 };
