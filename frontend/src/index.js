@@ -7,6 +7,7 @@ import "./assets/vendor/font-awesome/css/font-awesome.min.css";
 import "./assets/scss/loop.scss?v1.1.0";
 import "./assets/css/landing-page.css";
 import "./assets/scss/livepeer.scss";
+import "./assets/css/global.css";
 
 import Landing from "views/examples/Landing.js";
 import Creators from "views/examples/Creators.js";
