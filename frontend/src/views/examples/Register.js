@@ -1,6 +1,4 @@
 import React, { useEffect, useContext, useState } from "react";
-import { useHistory } from "react-router-dom";
-
 import {
   Button,
   Card,
@@ -36,8 +34,6 @@ const Register = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [userImage, setUserImage] = useState();
   const [creatorAdded, setCreatorAdded] = useState(false);
-
-  const history = useHistory();
 
   useEffect(() => {
     document.scrollingElement.scrollTop = 0;

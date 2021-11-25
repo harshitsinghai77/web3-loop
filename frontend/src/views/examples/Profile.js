@@ -108,9 +108,9 @@ const Profile = (props) => {
     setIsStreamCreated(true);
     const streamCreateResponse = await createLivepeerStream(creatorAddress);
     if (streamCreateResponse) {
-      const { id: streamId, playbackId, streamKey } = streamCreateResponse;
+      const { stream_id, playbackId, streamKey } = streamCreateResponse;
       setLivestream({
-        streamId: streamId,
+        streamId: stream_id,
         playbackId: playbackId,
         streamKey: streamKey,
       });
