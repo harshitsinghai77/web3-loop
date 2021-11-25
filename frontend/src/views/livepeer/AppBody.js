@@ -30,7 +30,7 @@ const AppBody = ({ streamIsActive, playbackId }) => {
         player.src(`https://cdn.livepeer.com/hls/${playbackId}/index.m3u8`);
       });
     }
-  }, [streamIsActive]);
+  }, [streamIsActive, playbackId, videoEl]);
 
   return (
     <div className="container w-full flex flex-col items-center overflow-auto pb-14">

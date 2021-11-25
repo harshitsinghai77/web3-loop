@@ -28,7 +28,7 @@ export default function LivepeerStream(props) {
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [streamId]);
 
   return (
     <>
