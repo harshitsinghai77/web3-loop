@@ -16,33 +16,11 @@ const CardsFooter = () => (
             <Button
               className="btn-icon-only rounded-circle"
               color="twitter"
-              href="https://twitter.com/creativetim"
+              href="https://twitter.com/harshit_778"
               target="_blank"
             >
               <span className="btn-inner--icon">
                 <i className="fa fa-twitter" />
-              </span>
-            </Button>
-
-            <Button
-              className="btn-icon-only rounded-circle ml-1"
-              color="facebook"
-              href="https://www.facebook.com/creativetim"
-              target="_blank"
-            >
-              <span className="btn-inner--icon">
-                <i className="fa fa-facebook-square" />
-              </span>
-            </Button>
-
-            <Button
-              className="btn-icon-only rounded-circle ml-1"
-              color="dribbble"
-              href="https://dribbble.com/creativetim"
-              target="_blank"
-            >
-              <span className="btn-inner--icon">
-                <i className="fa fa-dribbble" />
               </span>
             </Button>
 
