@@ -1,19 +1,11 @@
-const colors = require("tailwindcss/colors");
 module.exports = {
-  future: {
-    // removeDeprecatedGapUtilities: true,
-    // purgeLayersByDefault: true,
-  },
-  purge: ["./**/*.html", "./**/*.tsx"],
+  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+  darkMode: false, // or 'media' or 'class'
   theme: {
-    colors: {
-      ...colors,
-      livepeer: {
-        DEFAULT: "#943CFF",
-      },
-    },
     extend: {},
   },
-  variants: {},
+  variants: {
+    extend: {},
+  },
   plugins: [],
-};
+}

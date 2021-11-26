@@ -33,7 +33,7 @@ export default function LivepeerStream(props) {
   return (
     <>
       <DemoNavbar />
-      <div className="container pb-12 h-screen m-auto pt-24 lg:pt-40 landing-page">
+      <div className="section section-lg landing-page">
         <AppBody playbackId={playbackId} streamIsActive={streamIsActive} />
       </div>
       <CardsFooter />
