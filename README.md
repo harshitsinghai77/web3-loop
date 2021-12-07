@@ -3,24 +3,24 @@
 Supporting creators 3.0
 A platform that helps you support your favourite creators without draining your pockets.
 
-# Check it out here
+### Check it out here
 
 https://loop-web3.netlify.app/
 https://cautious-palm-tree.vercel.app/
 
-# Eth Global Showcase
+### Eth Global Showcase
 
 https://showcase.ethglobal.com/web3jam/loop
 
-# Checkout out our video
+### Checkout out our video
 
 https://www.youtube.com/watch?v=rM7JOhKNZjY
 
-# Blog
+### Blog
 
 https://fictionally-irrelevant.vercel.app/posts/introducing-loop
 
-# Features
+### Features
 
 Lose Nothing...
 
